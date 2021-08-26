@@ -1,0 +1,12 @@
+users:
+  - user_name: standard_user
+    password: secret_sauce
+  - user_name: problem_user
+    password: secret_sauce
+
+browser:
+  url: https://www.saucedemo.com/
+  headless: false
+  size: ~
+  extensions: false
+  gpu: true

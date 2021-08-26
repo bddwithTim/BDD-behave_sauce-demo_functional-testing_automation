@@ -13,8 +13,7 @@ from sauce_demo_bdd.context import SauceDemoContext
 @given("the saucedemo {page_name} page is displayed")
 def step_impl_1(context: SauceDemoContext, page_name: str):
     page_dict = {"login": "", "products": "inventory.html", "cart": "cart.html"}
-
-    context.browser.open_relative(page_dict[page_name])
+    context.browser.open_relative(page_dict[page_name.lower()])
 
 
 @when("I enter the '{user_account}' email address")

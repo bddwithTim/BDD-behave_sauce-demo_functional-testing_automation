@@ -2,7 +2,7 @@
 name = "web_ui_bdd"
 version = "0.1.0"
 description = ""
-authors = ["bddwithTim <iluminatim2@gmail.com>"]
+authors = [""]
 
 [tool.poetry.dependencies]
 python = "^3.7"

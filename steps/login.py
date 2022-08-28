@@ -41,8 +41,9 @@ def step_impl_5(context: SauceDemoContext, page_name: str):
     # create a dictionary for relative url reference
     page_dict = {"login": "", "products": "inventory.html", "cart": "cart.html"}
     expected_url = parse.urljoin(
-        context.browser_data["url"], "{}".format(page_dict[page_name.lower()])
+        context.browser_data["url"], f"{page_dict[page_name.lower()]}"
     )
+
     context.wait.until(ec.url_matches(expected_url))
 
 
@@ -87,25 +88,26 @@ def step_impl_9(context: SauceDemoContext, sidebar_link: str):
         ec.visibility_of_element_located(
             (
                 By.XPATH,
-                "//a[@class='bm-item menu-item' "
-                "and contains(text(),'{}')]".format(sidebar_link),
+                f"//a[@class='bm-item menu-item' and contains(text(),'{sidebar_link}')]",
             )
         )
     )
+
     selected_sidebar_link.click()
 
 
 @when("I enter an incorrect password")
 def step_impl_10(context: SauceDemoContext):
     password = context.driver.find_element_by_xpath("//input[@id='password']")
-    password.send_keys("{}{}".format(context.user["password"], time.time()))
+    password.send_keys(f'{context.user["password"]}{time.time()}')
 
 
 @then("this error message is displayed")
 def step_impl_11(context: SauceDemoContext):
     error_message = context.wait.until(
         ec.presence_of_element_located(
-            (By.XPATH, '//h3[contains(text(),"{}")]'.format(context.text.strip()))
+            (By.XPATH, f'//h3[contains(text(),"{context.text.strip()}")]')
         )
     )
+
     expect(error_message.text).to(equal(context.text.strip()))

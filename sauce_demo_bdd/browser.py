@@ -23,7 +23,7 @@ def chrome_options():
     if not gpu:
         _chrome_options.add_argument("--disable-gpu")
     if window_size:
-        _chrome_options.add_argument("--window-size={}".format(window_size))
+        _chrome_options.add_argument(f"--window-size={window_size}")
     if headless:
         _chrome_options.add_argument("--headless")
         _chrome_options.add_argument("--load-images=no")
@@ -51,7 +51,7 @@ class Browser:
         self.base_url = base_url
 
     def wait(self, parent_elem: WebElement = None, timeout: int = 10) -> WebDriverWait:
-        parent = parent_elem if parent_elem else self.driver
+        parent = parent_elem or self.driver
         return WebDriverWait(parent, timeout)
 
     def open(self, url: str, reopen: bool = False) -> None:
